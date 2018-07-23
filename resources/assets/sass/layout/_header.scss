@@ -1,0 +1,197 @@
+header.with-background {
+
+
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      padding: 40px 0;
+      letter-spacing: 1.5px;
+
+      .logo {
+        font-weight: bold;
+        font-size: 28px;
+      }
+
+      ul {
+        // display: flex;
+        // text-transform: uppercase;
+        // justify-content: space-between;
+        // width: 40%;
+
+        a {
+          color: $white;
+          &:hover {
+            color: darken($white, 10%);
+          }
+        }
+
+      }
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr; //repeat(2, 1fr)
+      grid-gap: $gutter;
+      padding-top: 20px;
+      padding-bottom: 84px;
+
+      .hero-image {
+        padding-left: 60px;
+      }
+
+      h1 {
+        font-size: 52px;
+        margin-top: 50px;
+      }
+
+      p {
+        margin: 40px 0 68px;
+      }
+
+      .button {
+        margin-right: 14px;
+      }
+    }
+  }
+
+  header.mainpage {
+
+          background: url('/img/mainpage.jpg');
+          background-size: cover;
+          color: $white;
+
+  }
+
+  header.gbnpage {
+
+          background: url('/img/gbnpage.jpg');
+          background-size: cover;
+          color: $white;
+
+  }
+
+  header.gospage {
+
+          background: url('/img/gospage.jpg');
+          background-size: cover;
+          color: $white;
+
+  }
+
+  header.cbipage {
+
+          background: url('/img/cbipage.jpg');
+          background-size: cover;
+          color: $white;
+
+  }
+
+
+  header {
+    background: darkcyan;
+
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      letter-spacing: 1.5px;
+      color: darkcyan;
+
+      .logo {
+        width: 250px;
+      }
+
+      ul {
+        display: flex;
+        text-transform: uppercase;
+        // justify-content: space-between;
+        // width: 40%;
+        padding-top: 8px;
+        font-weight: 400;
+
+        li {
+          margin-right: 38px;
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+
+        a {
+          color: $white;
+          &:hover {
+            color: darken($white, 10%);
+          }
+        }
+
+        .cart-count {
+          display: inline-block;
+          // position: absolute;
+          // right: 0;
+          // top: -22px;
+          // right: -24px;
+          
+          line-height: 0;
+
+          span {
+            display: inline-block;
+            padding-top: -20px;
+            margin-left:6px;
+            margin-right:6px;
+          }
+        }
+
+      }
+    }
+
+    .top-nav-left {
+      display: flex;
+    }
+
+    .top-nav-right {
+      display: flex;
+      align-items: center;
+      margin-left: 5%;
+    }
+  }
+
+/* Dropdown Button */
+.dropbtn {
+    display: flex;
+        text-transform: uppercase;
+        padding-top: 4px;
+        color: $white;
+        background-color: Transparent;
+        border: none;
+        letter-spacing: 1.5px;
+        font-size: 18px;
+}
+
+
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: darkcyan !important;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {color: darken($white, 10%);}
