@@ -17,7 +17,7 @@
 
     </head>
     <body>
-        <header class="with-background">
+        <header class="with-background mainpage">
             <div class="top-nav container">
                 <div class="top-nav-left">
                     <div class="logo"><a href="/"><img src="{{ asset('img/GIlogo.png') }}" alt="logo image"></a></div>

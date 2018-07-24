@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Coupon;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -10,15 +11,12 @@ class CouponsController extends Controller
 {
 
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        $coupon = Coupon::where('code', $request->coupon_code)->first();
+        $userEmail = Auth::user()->email; //logged in user email
+        $coupon = Coupon::where('code', $request->coupon_code)->where('beneficiary',$userEmail)->first();  
+       //$coupon = Coupon::where('code', $request->coupon_code)->first();
 
         if (!$coupon) {
             return redirect()->route('checkout.index')->withErrors('Invalid coupon code. Please try again.');
@@ -27,6 +25,8 @@ class CouponsController extends Controller
         session()->put('coupon', [
             'name' => $coupon->code,
             'discount' => $coupon->discount(Cart::subtotal()),
+            'discountrate' => $coupon->showdiscount(),
+            'beneficiary' => $coupon->beneficiary,
         ]);
 
         return redirect()->route('checkout.index')->with('success_message', 'Coupon has been applied!');
@@ -34,11 +34,7 @@ class CouponsController extends Controller
 
 
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy()
     {
         session()->forget('coupon');

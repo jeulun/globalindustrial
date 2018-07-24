@@ -21,4 +21,15 @@ class Coupon extends Model
             return 0;
         }
     }
+
+    public function showdiscount()
+    {
+        if ($this->type == 'fixed') {
+            return $this->value;
+        } elseif ($this->type == 'percent') {
+            return $this->percent_off . "%";
+        } else {
+            return 0;
+        }
+    }
 }
