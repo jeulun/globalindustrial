@@ -75,7 +75,7 @@
 
                     <div class="form-group">
                         
-                        <input type="text" class="form-control" id="name_on_card" name="name_on_card" value="0">
+                        <input type="hidden" class="form-control" id="name_on_card" name="name_on_card" value="0">
                     </div>
 
                 

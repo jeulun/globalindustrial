@@ -5,7 +5,7 @@
                 {{ $menu_item->title }}
                 @if ($menu_item->title === 'Cart')
                     @if (Cart::instance('default')->count() > 0)
-                    <span class="cart-count"><span>{{ Cart::instance('default')->count() }}</span></span>
+                    <span class="cart-count"><span>( {{ Cart::instance('default')->count() }} )</span></span>
                     @endif
                 @endif
             </a>
