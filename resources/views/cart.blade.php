@@ -64,16 +64,12 @@
                             </form>
                         </div>
                         <div>
-                            <select class="quantity" data-id="{{ $item->rowId }}">
-                                @for ($i = 1; $i < 5 + 1 ; $i++)
-                                    <option {{ $item->qty == $i ? 'selected' : '' }}>{{ $i }}</option>
-                                @endfor
-                                {{-- <option {{ $item->qty == 1 ? 'selected' : '' }}>1</option>
-                                <option {{ $item->qty == 2 ? 'selected' : '' }}>2</option>
-                                <option {{ $item->qty == 3 ? 'selected' : '' }}>3</option>
-                                <option {{ $item->qty == 4 ? 'selected' : '' }}>4</option>
-                                <option {{ $item->qty == 5 ? 'selected' : '' }}>5</option> --}}
-                            </select>
+                            
+                            <input id="qty1" class="quantity" id="updatequantity" data-id="{{ $item->rowId }}"  data-productQuantity="{{ $item->model->quantity }}" placeholder= {{ $item->qty }}>
+                            <br>
+                            <div id="button"><button type="button" onclick="function()">Update</button></div>
+
+
                         </div>
                         <div>{{ presentPrice($item->subtotal) }}</div>
                     </div>
@@ -176,8 +172,10 @@
             Array.from(classname).forEach(function(element) {
                 element.addEventListener('change', function() {
                     const id = element.getAttribute('data-id')
+                    const productQuantity = element.getAttribute('data-productQuantity')
                     axios.patch(`/cart/${id}`, {
-                        quantity: this.value
+                        quantity: this.value,
+                        productQuantity: productQuantity
                     })
                     .then(function (response) {
                         // console.log(response);
