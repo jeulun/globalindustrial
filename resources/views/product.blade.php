@@ -12,9 +12,9 @@
         <div class="container">
             <a href="/">Home</a>
             <i class="fa fa-chevron-right breadcrumb-separator"></i>
-            <a href="{{ route('shop.index') }}">Shop</a>
+            <a href="{{ route('shop.index') }}">Products</a>
             <i class="fa fa-chevron-right breadcrumb-separator"></i>
-            <span>Macbook Pro</span>
+            <span>{{ $product->name }}</span>
         </div>
     </div> <!-- end breadcrumbs -->
 
@@ -42,13 +42,31 @@
             <div class="product-section-subtitle">{{ $product->details }}</div>
             <div class="product-section-price">{{ $product->presentPrice() }}</div>
 
+            @if ($product->dimensionimage)
+            <div class="product-section-subtitle">Dimension: <br><br>
+            
+            <img src="{{ productImage($product->dimensionimage) }}" alt="dimensionImage">
+            
+            </div>
+            @endif
+
+            <br>
+
             <p>
                 {!! $product->description !!}
             </p>
 
             <p>&nbsp;</p>
 
-            <form action="{{ route('cart.store') }}" method="POST">
+            @if ($product->quantity > 0)
+
+
+            @includeif('partials.specs.' . $product->slug)
+            
+
+            @endif
+
+    <!--    <form action="{{ route('cart.store') }}" method="POST">
                 {{ csrf_field() }}
                 <input type="hidden" name="id" value="{{ $product->id }}">
                 <input type="hidden" name="name" value="{{ $product->name }}">
@@ -56,7 +74,7 @@
                 <button type="submit" class="button button-plain">Add to Cart</button>
             </form>
         </div>
-    </div> <!-- end product-section -->
+    </div> --> <!-- end product-section -->
 
     @include('partials.might-like')
 
@@ -83,5 +101,13 @@
             }
 
         })();
+
+        $('.product-options tr').click(function() {
+        $(this).children('td').children('input').prop('checked', true);
+  
+        $('.product-options tr').removeClass('selected');
+        $(this).toggleClass('selected');
+
+        });
     </script>
 @endsection

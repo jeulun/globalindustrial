@@ -46,6 +46,19 @@
                         <div class="cart-item-details">
                             <div class="cart-table-item"><a href="{{ route('shop.show', $item->model->slug) }}">{{ $item->model->name }}</a></div>
                             <div class="cart-table-description">{{ $item->model->details }}</div>
+
+                            @if ($item->options->productvariation)
+                            <div class="cart-table-productvariation">Specification: {{ $item->options->productvariation }}</div>
+                            @endif
+
+                            @if ($item->options->material)
+                            <div class="cart-table-material">Material: {{ $item->options->material }}</div>
+                            @endif
+
+                            @if ($item->options->colour)
+                            <div class="cart-table-colour">Colour: {{ $item->options->colour }}</div>
+                            @endif
+
                         </div>
                     </div>
                     <div class="cart-table-row-right">

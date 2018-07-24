@@ -37,8 +37,12 @@ class CartController extends Controller
             return redirect()->route('cart.index')->with('success_message', 'Item is already in your cart!');
         }
 
-        Cart::add($request->id, $request->name, 1, $request->price)
+
+        Cart::add($request->id, $request->name, 1, $request->price, ['material' => $request->material, 'productvariation' => $request->productvariation, 'colour' => $request->colour])
             ->associate('App\Product');
+
+        //Cart::add($request->id, $request->name, 1, $request->price)
+        //    ->associate('App\Product');
 
         return redirect()->route('cart.index')->with('success_message', 'Item was added to your cart!');
     }
@@ -53,11 +57,11 @@ class CartController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'quantity' => 'required|numeric|between:1,5'
+            'quantity' => 'required|numeric|between:1,100000'
         ]);
 
         if ($validator->fails()) {
-            session()->flash('errors', collect(['Quantity must be between 1 and 5.']));
+            session()->flash('errors', collect(['Quantity must be between 1 and 100,000.']));
             return response()->json(['success' => false], 400);
         }
 

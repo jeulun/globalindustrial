@@ -76,7 +76,7 @@
 
                     <div class="spacer"></div>
 
-                    <h2>Payment Details</h2>
+              
 
                     <div class="form-group">
                         
@@ -105,12 +105,16 @@
                             <div class="checkout-item-details">
                                 <div class="checkout-table-item">{{ $item->model->name }}</div>
                                 <div class="checkout-table-description">{{ $item->model->details }}</div>
+                                <div class="checkout-table-material">{{ $item->options->material }}</div>
+                                <div class="checkout-table-productvariation">{{ $item->options->productvariation }}</div>
                                 <div class="checkout-table-price">{{ $item->model->presentPrice() }}</div>
                             </div>
                         </div> <!-- end checkout-table -->
 
                         <div class="checkout-table-row-right">
-                            <div class="checkout-table-quantity">{{ $item->qty }}</div>
+                            <div class="checkout-table-quantity">{{ $item->qty }}
+                            </div>
+
                         </div>
                     </div> <!-- end checkout-table-row -->
                     @endforeach
