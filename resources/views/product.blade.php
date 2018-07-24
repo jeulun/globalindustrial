@@ -61,7 +61,7 @@
             @if ($product->quantity > 0)
 
 
-            @includeif('partials.specs.' . $product->slug)
+            @include('partials.specs.' . $product->slug)
             
 
             @endif

@@ -51,6 +51,27 @@
 }
 
 .product-section-information {
+    
+    table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 100%;
+}
+
+th, td {
+  font-size: 14px;
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+
+
+tr.selected {
+  background: #ddd;
+}
 
     p {
         margin-bottom: 16px;
@@ -59,6 +80,7 @@
 }
 
 .product-section-title {
+    margin-bottom: 0;
 
 }
 
@@ -73,4 +95,3 @@
     color: $text-color;
     margin-bottom: 16px;
 }
-
