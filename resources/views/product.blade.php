@@ -40,6 +40,7 @@
         <div class="product-section-information">
             <h1 class="product-section-title">{{ $product->name }}</h1>
             <div class="product-section-subtitle">{{ $product->details }}</div>
+            <div>{!! $stockLevel !!}</div>
             <div class="product-section-price">{{ $product->presentPrice() }}</div>
 
             @if ($product->dimensionimage)
