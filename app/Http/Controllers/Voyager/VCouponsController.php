@@ -14,10 +14,10 @@ use TCG\Voyager\Events\BreadDataDeleted;
 use TCG\Voyager\Events\BreadDataUpdated;
 use TCG\Voyager\Events\BreadImagesDeleted;
 use TCG\Voyager\Facades\Voyager;
-use TCG\Voyager\Http\Controllers\VoyagerBreadController;
+use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 
-class VcouponsController extends VoyagerBreadController
+class VcouponsController extends VoyagerBaseController
 {
     use BreadRelationshipParser;
     //***************************************
