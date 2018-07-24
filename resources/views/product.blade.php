@@ -72,9 +72,9 @@
                 <input type="hidden" name="name" value="{{ $product->name }}">
                 <input type="hidden" name="price" value="{{ $product->price }}">
                 <button type="submit" class="button button-plain">Add to Cart</button>
-            </form>
+            </form> -->
         </div>
-    </div> --> <!-- end product-section -->
+    </div>  <!-- end product-section -->
 
     @include('partials.might-like')
 
