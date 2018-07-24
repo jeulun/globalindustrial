@@ -56,6 +56,11 @@
                             <input type="text" class="form-control" id="city" name="city" value="{{ old('city') }}" required>
                         </div>
                         
+                    <div class="form-group">
+                            <label for="province">State</label>
+                            <input type="text" class="form-control" id="province" name="province" value="{{ old('province') }}" required>
+                        </div>
+                        
                     </div> <!-- end half-form -->
 
                     <div class="half-form">
