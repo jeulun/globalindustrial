@@ -15,6 +15,15 @@ class ShopController extends Controller
      */
     public function index()
     {
+        return view('shop')->with([
+            'products' => $this->showcategory()->get('products'),
+            'categories' => $this->showcategory()->get('categories'),
+            'categoryName' => $this->showcategory()->get('categoryName'),
+        ]);
+    }
+
+    public function showcategory()
+    {
         $pagination = 9;
         $categories = Category::all();
 
@@ -36,7 +45,7 @@ class ShopController extends Controller
             $products = $products->paginate($pagination);
         }
 
-        return view('shop')->with([
+        return collect([
             'products' => $products,
             'categories' => $categories,
             'categoryName' => $categoryName,
