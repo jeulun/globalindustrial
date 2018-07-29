@@ -38,7 +38,7 @@ class ShopController extends Controller
             $categoryName = optional($categories->where('slug', request()->category)->first())->name;
         } else {
             $products = Product::where('featured', true);
-            $categoryName = 'Featured';
+            $categoryName = $brandName;
         }
 
 

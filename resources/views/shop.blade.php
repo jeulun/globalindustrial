@@ -36,13 +36,10 @@
             <div class="products-header">
                 <h1 class="stylish-heading">
                 
-                @if (request()->category)
+                
                 {{ $categoryName }}
-                @endif
+                
 
-                @if (request()->brand)
-                {{ $brandName }}
-                @endif
 
                 </h1>
               
