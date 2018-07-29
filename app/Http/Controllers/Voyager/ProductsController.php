@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Voyager;
 
 use App\Product;
 use App\Category;
+use App\Brand;
 use App\CategoryProduct;
+use App\BrandProduct;
 use Illuminate\Http\Request;
 use TCG\Voyager\Facades\Voyager;
 use Illuminate\Support\Facades\DB;
@@ -14,10 +16,10 @@ use TCG\Voyager\Events\BreadDataDeleted;
 use TCG\Voyager\Events\BreadDataUpdated;
 use TCG\Voyager\Events\BreadImagesDeleted;
 use TCG\Voyager\Database\Schema\SchemaManager;
-use TCG\Voyager\Http\Controllers\VoyagerBaseController;
+use TCG\Voyager\Http\Controllers\VoyagerBreadController;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 
-class ProductsController extends VoyagerBaseController
+class ProductsController extends VoyagerBreadController
 {
     use BreadRelationshipParser;
     //***************************************
@@ -160,11 +162,13 @@ class ProductsController extends VoyagerBaseController
         }
 
         $allCategories = Category::all();
-
+        $allBrands = Brand::all();
         $product = Product::find($id);
         $categoriesForProduct = $product->categories()->get();
+        $brandsForProduct = $product->brands()->get();
+      
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'allCategories', 'categoriesForProduct'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'allCategories', 'allBrands', 'categoriesForProduct', 'brandsForProduct'));
     }
 
     // POST BR(E)AD
@@ -201,6 +205,14 @@ class ProductsController extends VoyagerBaseController
 
             // Re-insert if there's at least one category checked
             $this->updateProductCategories($request, $id);
+
+
+
+            BrandProduct::where('product_id', $id)->delete();
+            $this->updateBrandCategories($request, $id);
+
+            
+
 
             return redirect()
                 ->route("voyager.{$dataType->slug}.index")
@@ -257,7 +269,10 @@ class ProductsController extends VoyagerBaseController
         $allCategories = Category::all();
         $categoriesForProduct = collect([]);
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'allCategories', 'categoriesForProduct'));
+        $allBrands = Brand::all();
+        $brandsForProduct = collect([]);
+
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'allCategories', 'allBrands', 'categoriesForProduct', 'brandsForProduct'));
     }
 
     /**
@@ -292,6 +307,7 @@ class ProductsController extends VoyagerBaseController
             event(new BreadDataAdded($dataType, $data));
 
             $this->updateProductCategories($request, $data->id);
+            $this->updateBrandCategories($request, $data->id);
 
             return redirect()
                 ->route("voyager.{$dataType->slug}.index")
@@ -311,6 +327,21 @@ class ProductsController extends VoyagerBaseController
                     'category_id' => $category,
                 ]);
             }
+
         }
     }
+
+    protected function updateBrandCategories(Request $request, $id)
+    {
+        if ($request->brand) {
+            foreach ($request->brand as $brand) {
+                BrandProduct::create([
+                    'product_id' => $id,
+                    'brand_id' => $brand,
+                ]);
+            }
+   
+        }
+    }
+
 }
