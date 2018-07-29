@@ -42,7 +42,7 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label for="name">Name</label>
+                        <label for="name">Company Name</label>
                         <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
                     </div>
                     <div class="form-group">
