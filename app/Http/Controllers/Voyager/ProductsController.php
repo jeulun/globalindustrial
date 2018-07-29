@@ -168,7 +168,7 @@ class ProductsController extends VoyagerBaseController
         $allBrands = Brand::all();
         $brandsForProduct = $product->brands()->get();
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'allCategories', 'categoriesForProduct'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'allCategories', 'allBrands', 'categoriesForProduct', 'brandsForProduct'));
     }
 
     // POST BR(E)AD
