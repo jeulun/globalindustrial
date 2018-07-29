@@ -41,13 +41,6 @@ class ShopController extends Controller
             $categoryName = 'Featured';
         }
 
-        if (request()->sort == 'low_high') {
-            $products = $products->orderBy('price')->paginate($pagination);
-        } elseif (request()->sort == 'high_low') {
-            $products = $products->orderBy('price', 'desc')->paginate($pagination);
-        } else {
-            $products = $products->paginate($pagination);
-        }
 
         return collect([
             'products' => $products,
@@ -69,14 +62,6 @@ class ShopController extends Controller
         } else {
             $products = Product::where('featured', true);
             $brandName = 'Featured';
-        }
-
-        if (request()->sort == 'low_high') {
-            $products = $products->orderBy('price')->paginate($pagination);
-        } elseif (request()->sort == 'high_low') {
-            $products = $products->orderBy('price', 'desc')->paginate($pagination);
-        } else {
-            $products = $products->paginate($pagination);
         }
 
         return collect([

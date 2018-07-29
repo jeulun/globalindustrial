@@ -34,13 +34,18 @@
         </div> <!-- end sidebar -->
         <div>
             <div class="products-header">
-                <h1 class="stylish-heading">{{ $categoryName }}{{ $brandName }}</h1>
-                <div>
-                    <strong>Price: </strong>
-                    <a href="{{ route('shop.index', ['category'=> request()->category, 'sort' => 'low_high']) }}">Low to High</a> |
-                    <a href="{{ route('shop.index', ['category'=> request()->category, 'sort' => 'high_low']) }}">High to Low</a>
+                <h1 class="stylish-heading">
+                
+                @if (request()->category)
+                {{ $categoryName }}
+                @endif
 
-                </div>
+                @if (request()->brand)
+                {{ $brandName }}
+                @endif
+
+                </h1>
+              
             </div>
 
             <div class="products text-center">
