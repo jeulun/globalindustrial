@@ -34,15 +34,7 @@
         </div> <!-- end sidebar -->
         <div>
             <div class="products-header">
-                 <!--<h1 class="stylish-heading">
                 
-                
-                {{ $categoryName }}
-                
-
-
-                </h1>-->
-              
             </div>
 
             <div class="products text-center">
@@ -57,9 +49,7 @@
                 @endforelse
             </div> <!-- end products -->
 
-            <div class="spacer"></div>
-            {{ $products->appends(request()->input())->links() }}
-        </div>
+            
     </div>
 
 
