@@ -85,6 +85,16 @@
                                 @endforeach
                                 </ul>
                             </div> <!-- end form-group -->
+                            
+                            <div class="form-group">
+                                <label>Brands</label>
+
+                                <ul style="list-style-type: none; padding-left: 0">
+                                @foreach ($allBrands as $brand)
+                                    <li><label><input value="{{ $brand->id }}" type="radio" name="brand[]" style="margin-right: 5px;" {{ $brandsForProduct->contains($brand) ? 'checked' : '' }}>{{ $brand->name }}</label></li>
+                                @endforeach
+                                </ul>
+                            </div> <!-- end form-group -->
 
                         </div><!-- panel-body -->
 
