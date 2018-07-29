@@ -15,7 +15,9 @@ class CBIController extends Controller
      */
     public function index()
     {
-        $products = Product::where('featured', true)->take(8)->inRandomOrder()->get();
+        $brands = Brand::all();
+        $products = Product::with('brands')->whereHas('brands', function ($query) {$query->where('slug', 'cbi');
+    })->take(8)->inRandomOrder()->get();
 
         return view('CBI')->with('products', $products);
     }

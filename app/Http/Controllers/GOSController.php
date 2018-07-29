@@ -15,7 +15,9 @@ class GOSController extends Controller
      */
     public function index()
     {
-        $products = Product::where('featured', true)->take(8)->inRandomOrder()->get();
+        $brands = Brand::all();
+        $products = Product::with('brands')->whereHas('brands', function ($query) {$query->where('slug', 'gos');
+    })->take(8)->inRandomOrder()->get();
 
         return view('GOS')->with('products', $products);
     }
