@@ -26,8 +26,8 @@
                 <table class="content" width="100%" cellpadding="0" cellspacing="0" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; margin: 0; padding: 0; width: 100%; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%;">
 <tr>
 <td class="header" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; padding: 25px 0; text-align: center;">
-        <a href="https://markdownmail.com" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #bbbfc3; font-size: 25px; font-weight: bold; text-decoration: none; text-shadow: 0 1px 0 #ffffff;">
-            GI
+        <a href="http://206.189.152.67/" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #bbbfc3; font-size: 25px; font-weight: bold; text-decoration: none; text-shadow: 0 1px 0 #ffffff;">
+            Global Industrial
         </a>
     </td>
 </tr>
