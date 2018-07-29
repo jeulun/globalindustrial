@@ -34,14 +34,7 @@
         </div> <!-- end sidebar -->
         <div>
             <div class="products-header">
-                <h1 class="stylish-heading">
                 
-                
-                {{ $categoryName }}
-                
-
-
-                </h1>
               
             </div>
 
