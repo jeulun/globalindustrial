@@ -16,28 +16,27 @@ class ShopController extends Controller
      */
     public function index()
     {
-        return view('shop')->with([
-            'products' => $this->showcategory()->get('products'),
-            'categories' => $this->showcategory()->get('categories'),
-            'categoryName' => $this->showcategory()->get('categoryName'),
-            'products' => $this->showbrand()->get('products'),
-            'brands' => $this->showbrand()->get('brands'),
-            'brandName' => $this->showbrand()->get('brandName'),
-        ]);
-    }
-
-    public function showcategory()
-    {
         $pagination = 9;
         $categories = Category::all();
+        $brands = Brand::all();
 
         if (request()->category) {
             $products = Product::with('categories')->whereHas('categories', function ($query) {
                 $query->where('slug', request()->category);
             });
             $categoryName = optional($categories->where('slug', request()->category)->first())->name;
+            $brandName = $categoryName;
+        } else 
+
+        if (request()->brand) {
+            $products = Product::with('brands')->whereHas('brands', function ($query) {
+                $query->where('slug', request()->brand);
+            });
+            $brandName = optional($brands->where('slug', request()->brand)->first())->name;
+            $categoryName = $brandName;
         } else {
             $products = Product::where('featured', true);
+            $brandName = 'Featured';
             $categoryName = 'Featured';
         }
 
@@ -49,38 +48,10 @@ class ShopController extends Controller
             $products = $products->paginate($pagination);
         }
 
-        return collect([
+        return view('shop')->with([
             'products' => $products,
             'categories' => $categories,
             'categoryName' => $categoryName,
-        ]);
-    }
-
-    public function showbrand()
-    {
-        $pagination = 9;
-        $brands = Brand::all();
-
-        if (request()->brand) {
-            $products = Product::with('brands')->whereHas('brands', function ($query) {
-                $query->where('slug', request()->brand);
-            });
-            $brandName = optional($brands->where('slug', request()->brand)->first())->name;
-        } else {
-            $products = Product::where('featured', true);
-            $brandName = 'Featured';
-        }
-
-        if (request()->sort == 'low_high') {
-            $products = $products->orderBy('price')->paginate($pagination);
-        } elseif (request()->sort == 'high_low') {
-            $products = $products->orderBy('price', 'desc')->paginate($pagination);
-        } else {
-            $products = $products->paginate($pagination);
-        }
-
-        return collect([
-            'products' => $products,
             'brands' => $brands,
             'brandName' => $brandName,
         ]);
