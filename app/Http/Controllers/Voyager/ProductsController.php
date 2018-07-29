@@ -16,10 +16,10 @@ use TCG\Voyager\Events\BreadDataDeleted;
 use TCG\Voyager\Events\BreadDataUpdated;
 use TCG\Voyager\Events\BreadImagesDeleted;
 use TCG\Voyager\Database\Schema\SchemaManager;
-use TCG\Voyager\Http\Controllers\VoyagerBreadController;
+use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 
-class ProductsController extends VoyagerBreadController
+class ProductsController extends VoyagerBaseController
 {
     use BreadRelationshipParser;
     //***************************************
@@ -162,13 +162,13 @@ class ProductsController extends VoyagerBreadController
         }
 
         $allCategories = Category::all();
-        $allBrands = Brand::all();
+
         $product = Product::find($id);
         $categoriesForProduct = $product->categories()->get();
+        $allBrands = Brand::all();
         $brandsForProduct = $product->brands()->get();
-      
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'allCategories', 'allBrands', 'categoriesForProduct', 'brandsForProduct'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'allCategories', 'categoriesForProduct'));
     }
 
     // POST BR(E)AD
@@ -205,14 +205,8 @@ class ProductsController extends VoyagerBreadController
 
             // Re-insert if there's at least one category checked
             $this->updateProductCategories($request, $id);
-
-
-
             BrandProduct::where('product_id', $id)->delete();
             $this->updateBrandCategories($request, $id);
-
-            
-
 
             return redirect()
                 ->route("voyager.{$dataType->slug}.index")
@@ -268,7 +262,6 @@ class ProductsController extends VoyagerBreadController
 
         $allCategories = Category::all();
         $categoriesForProduct = collect([]);
-
         $allBrands = Brand::all();
         $brandsForProduct = collect([]);
 
@@ -327,7 +320,6 @@ class ProductsController extends VoyagerBreadController
                     'category_id' => $category,
                 ]);
             }
-
         }
     }
 
@@ -343,5 +335,4 @@ class ProductsController extends VoyagerBreadController
    
         }
     }
-
 }
