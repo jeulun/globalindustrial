@@ -24,10 +24,17 @@
                     <li class="{{ setActiveCategory($category->slug) }}"><a href="{{ route('shop.index', ['category' => $category->slug]) }}">{{ $category->name }}</a></li>
                 @endforeach
             </ul>
+
+            <h3>By Brand</h3>
+            <ul>
+                @foreach ($brands as $brand)
+                    <li class="{{ setActiveBrand($brand->slug) }}"><a href="{{ route('shop.index', ['brand' => $brand->slug]) }}">{{ $brand->name }}</a></li>
+                @endforeach
+            </ul>
         </div> <!-- end sidebar -->
         <div>
             <div class="products-header">
-                <h1 class="stylish-heading">{{ $categoryName }}</h1>
+                <h1 class="stylish-heading">{{ $categoryName }}{{ $brandName }}</h1>
                 <div>
                     <strong>Price: </strong>
                     <a href="{{ route('shop.index', ['category'=> request()->category, 'sort' => 'low_high']) }}">Low to High</a> |
